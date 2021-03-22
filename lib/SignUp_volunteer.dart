@@ -4,6 +4,7 @@ import 'package:first_app/oof.dart';
 import 'package:first_app/SignUp.dart';
 import 'HomePage.dart';
 import 'Login_screen.dart';
+import 'package:first_app/Service/auth.dart';
 
 String _userEmail = '';
 String _userName = '';
@@ -21,6 +22,8 @@ class _State extends State<SignUp_volunteer> {
   TextEditingController nameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
+  final AuthService auth = AuthService();
+  
   String name, email, phone;
 
   //TextController to read text entered in text field
@@ -324,9 +327,13 @@ class _State extends State<SignUp_volunteer> {
                   height: 50,
                   child: RaisedButton(
                     color: Colors.deepPurpleAccent,
-                    onPressed: () {
+                    onPressed: () async{
                       if (_formkey.currentState.validate()) {
                         print("successful");
+                        dynamic result = await auth.registerEmailAndPassword(_userEmail, _password);
+                        if(result == null){
+                          print("Please supply a valid email");
+                        }
                         Navigator.push(
                           context,
                           MaterialPageRoute(

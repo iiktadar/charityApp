@@ -1,3 +1,4 @@
+import 'package:first_app/HomePage.dart';
 import 'package:flutter/material.dart';
 import 'package:first_app/oof.dart';
 import 'package:first_app/Service/auth.dart';
@@ -324,9 +325,14 @@ class _State extends State<SignUp_Org> {
                   height: 50,
                   child: RaisedButton(
                     color: Colors.deepPurpleAccent,
-                    onPressed: () {
+                    onPressed: () async {
                       if (_formkey.currentState.validate()) {
                         print("successful");
+                        dynamic result = await auth.registerEmailAndPassword(_userEmail, _password);
+                        if(result == null){
+                          print("Please supply a valid email");
+                        }
+
                         Navigator.push(
                           context,
                           MaterialPageRoute(builder: (context) => SignUp()),
