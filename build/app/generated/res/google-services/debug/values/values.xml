@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="default_web_client_id" translatable="false">270035822188-3oc5b4937cn1gqu3s73521qu48dimck7.apps.googleusercontent.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">270035822188</string>
+    <string name="google_api_key" translatable="false">AIzaSyCDF7YonN5BZdhckyD97mXpO3d1lpw7QtY</string>
+    <string name="google_app_id" translatable="false">1:270035822188:android:be64b62fff9d17aa865a49</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyCDF7YonN5BZdhckyD97mXpO3d1lpw7QtY</string>
+    <string name="google_storage_bucket" translatable="false">charity-app-a2caa.appspot.com</string>
+    <string name="project_id" translatable="false">charity-app-a2caa</string>
+</resources>
