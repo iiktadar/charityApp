@@ -1,15 +1,17 @@
-import 'package:first_app/Service/auth.dart';
+// THIS IS THE HOME PAGE WITH ALERTS FROM CHARITIES. THE ALERT BOARD WITH POST BUTTON IS FOR ORGANISATIONS ONLY!!
+
 import 'package:flutter/material.dart';
+
 import './Education.dart';
 import './Food.dart';
 import './Community.dart';
 import './Environment.dart';
 import './AnimalServices.dart';
-import 'package:first_app/Service/auth.dart';
+import './ProfilePage.dart';
+import './PostPage.dart';
+import './HomePageForOrganisation.dart';
 
 class HomePage extends StatelessWidget {
-
-  final AuthService auth = AuthService();
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -17,7 +19,7 @@ class HomePage extends StatelessWidget {
         //Styling the top app bar with added icons
         appBar: AppBar(
           title: Text(
-            'Home Page',
+            'Alert Board',
             style: TextStyle(fontSize: 20, color: Colors.white),
           ),
           shape: RoundedRectangleBorder(
@@ -32,9 +34,23 @@ class HomePage extends StatelessWidget {
             ),
           ],
         ),
-// The body contains the search bar, defined in the class at the end of the page.
-        body: searchBar(),
-        // this is the code for the side navigation bar, with list of options
+// ADDING POST BUTTON, CHANGE THE COLOUR!!!
+        body: Container(),
+        floatingActionButton: Container(
+            padding: EdgeInsets.symmetric(vertical: 10),
+            child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  FloatingActionButton(
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => CreatePost()));
+                      },
+                      child: Icon(Icons.add))
+                ])),
+        // this is the code for the side navigation bar, with list of options. Navigator connects all pages
         drawer: Drawer(
             elevation: 1.5,
             child: Column(
@@ -55,9 +71,11 @@ class HomePage extends StatelessWidget {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => HomePage()));
+                                  builder: (context) =>
+                                      OrganisationHomePage()));
                         },
                       ),
+
                       //FOOD BANK SERVICES BUTTON
                       ListTile(
                         leading: Icon(Icons.food_bank_rounded),

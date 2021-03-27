@@ -5,6 +5,7 @@ import './Food.dart';
 import './Community.dart';
 import './Environment.dart';
 import './AnimalServices.dart';
+import 'ProfilePage.dart';
 
 class Food extends StatelessWidget {
   @override
@@ -22,11 +23,14 @@ class Food extends StatelessWidget {
           elevation: 0,
           toolbarHeight: 70,
           backgroundColor: Colors.indigo[100],
-          actions: [
-            Padding(
-              padding: EdgeInsets.all(10),
-              child: Icon(Icons.account_circle_outlined, color: Colors.white),
-            ),
+          actions: <Widget>[
+            IconButton(
+              icon: Icon(Icons.account_circle_outlined),
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => ProfileScreen()));
+              },
+            )
           ],
         ),
 // The body contains the search bar, defined in the class at the end of the page.

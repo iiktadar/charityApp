@@ -5,6 +5,8 @@ import 'package:first_app/oof.dart';
 import 'package:first_app/SignUp_screen.dart';
 import 'package:first_app/Service/auth.dart';
 
+import 'HomePageForOrganisation.dart';
+
 class Login_screen extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => new _State();
@@ -85,7 +87,7 @@ class _State extends State<Login_screen> {
                           print("Signed in");
                           Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => HomePage()),
+                          MaterialPageRoute(builder: (context) => OrganisationHomePage()),
                         );
                         }
                         print(nameController.text);
