@@ -1,3 +1,4 @@
+import 'package:first_app/HomePageForOrganisation.dart';
 import 'package:flutter/material.dart';
 import './Education.dart';
 import './HomePage.dart';
@@ -5,6 +6,7 @@ import './Food.dart';
 import './Community.dart';
 import './Environment.dart';
 import './AnimalServices.dart';
+import 'AlertBoard.dart';
 import 'ProfilePage.dart';
 
 class Food extends StatelessWidget {
@@ -23,12 +25,15 @@ class Food extends StatelessWidget {
           elevation: 0,
           toolbarHeight: 70,
           backgroundColor: Colors.indigo[100],
-          actions: <Widget>[
+          actions: [
             IconButton(
-              icon: Icon(Icons.account_circle_outlined),
+              icon: const Icon(Icons.account_circle_outlined),
+              tooltip: 'Inc',
               onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => ProfileScreen()));
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ProfileScreen()),
+                );
               },
             )
           ],
@@ -56,16 +61,18 @@ class Food extends StatelessWidget {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => HomePage()));
+                                  builder: (context) =>
+                                      OrganisationHomePage()));
                         },
                       ),
-                      //FOOD BANK SERVICES BUTTON
                       ListTile(
-                        leading: Icon(Icons.food_bank_rounded),
-                        title: Text("Food Banks"),
+                        leading: Icon(Icons.star),
+                        title: Text("Alert Board"),
                         onTap: () {
-                          Navigator.push(context,
-                              MaterialPageRoute(builder: (context) => Food()));
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => AlertBoard()));
                         },
                       ),
                       //COMMUNITY SERVICE BUTTON

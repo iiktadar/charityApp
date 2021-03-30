@@ -19,14 +19,15 @@ class DatabaseService{
     });  
   }
 
-  Future updatePost(String name, String description, String location, String number, String date, String time) async{
+  Future updatePost(String name, String description, String location, String number, String date, String time, String address) async{
     return await post.doc().set({
       'name':name,
       'description': description,
       'location': location,
       'number': number,
       'date': date,
-      'time': time
+      'time': time,
+      'address': address,
     });
   }
 }

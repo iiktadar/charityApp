@@ -59,9 +59,10 @@ class ProfileScreen extends StatelessWidget {
                     CircleAvatar(
                       backgroundColor: Colors.white,
                       radius: 80,
+                      backgroundImage: AssetImage('lib/Assets/cruk.png'),
                     ),
                     const SizedBox(height: 7),
-                    Text("First Name, Surname", textAlign: TextAlign.center),
+                    Text("Cancer Research UK", textAlign: TextAlign.center),
                   ],
                 ),
                 //Different boxes where information provided from the sign-up form should go
@@ -74,12 +75,37 @@ class ProfileScreen extends StatelessWidget {
                         10,
                       ),
                       child: Container(
-                        height: 100,
+                        height: 50,
                         child: Align(
                           alignment: Alignment.centerLeft,
                           child: Padding(
                             padding: const EdgeInsets.all(8),
-                            child: Text('Bio'),
+                            child: Text(
+                                'About Us: We are a Cancer Research and Awareness Charity.'),
+                          ),
+                        ),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                            border: Border.all(width: 1.0, color: Colors.grey)),
+                      )),
+                ]),
+
+                Column(children: <Widget>[
+                  Padding(
+                      padding: const EdgeInsets.fromLTRB(
+                        10,
+                        430,
+                        10,
+                        10,
+                      ),
+                      child: Container(
+                        height: 50,
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8),
+                            child:
+                                Text('Email: cresearch@crs.com'),
                           ),
                         ),
                         decoration: BoxDecoration(
@@ -91,7 +117,7 @@ class ProfileScreen extends StatelessWidget {
                   Padding(
                       padding: const EdgeInsets.fromLTRB(
                         10,
-                        470,
+                        500,
                         10,
                         10,
                       ),
@@ -101,51 +127,7 @@ class ProfileScreen extends StatelessWidget {
                           alignment: Alignment.centerLeft,
                           child: Padding(
                             padding: const EdgeInsets.all(8),
-                            child: Text('Name'),
-                          ),
-                        ),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(10)),
-                            border: Border.all(width: 1.0, color: Colors.grey)),
-                      )),
-                ]),
-                Column(children: <Widget>[
-                  Padding(
-                      padding: const EdgeInsets.fromLTRB(
-                        10,
-                        535,
-                        10,
-                        10,
-                      ),
-                      child: Container(
-                        height: 50,
-                        child: Align(
-                          alignment: Alignment.centerLeft,
-                          child: Padding(
-                            padding: const EdgeInsets.all(8),
-                            child: Text('Email'),
-                          ),
-                        ),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(10)),
-                            border: Border.all(width: 1.0, color: Colors.grey)),
-                      )),
-                ]),
-                Column(children: <Widget>[
-                  Padding(
-                      padding: const EdgeInsets.fromLTRB(
-                        10,
-                        600,
-                        10,
-                        10,
-                      ),
-                      child: Container(
-                        height: 50,
-                        child: Align(
-                          alignment: Alignment.centerLeft,
-                          child: Padding(
-                            padding: const EdgeInsets.all(8),
-                            child: Text('Interests'),
+                            child: Text('What we do: Research, fundraising '),
                           ),
                         ),
                         decoration: BoxDecoration(
@@ -155,28 +137,6 @@ class ProfileScreen extends StatelessWidget {
                 ]),
 
                 //Not neccessary at this point but users could be allowed to 'save' job posts that they wish to complete
-                Column(children: <Widget>[
-                  Padding(
-                      padding: const EdgeInsets.fromLTRB(
-                        10,
-                        670,
-                        10,
-                        10,
-                      ),
-                      child: Container(
-                        height: 50,
-                        child: Align(
-                          alignment: Alignment.centerLeft,
-                          child: Padding(
-                            padding: const EdgeInsets.all(8),
-                            child: Text(' Saved jobs'),
-                          ),
-                        ),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(10)),
-                            border: Border.all(width: 1.0, color: Colors.grey)),
-                      )),
-                ])
               ],
             )));
   }

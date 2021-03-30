@@ -5,6 +5,8 @@ import './Food.dart';
 import './Community.dart';
 import './Environment.dart';
 import './AnimalServices.dart';
+import 'HomePageForOrganisation.dart';
+import 'ProfilePage.dart';
 
 class Education extends StatelessWidget {
   @override
@@ -23,10 +25,16 @@ class Education extends StatelessWidget {
           toolbarHeight: 70,
           backgroundColor: Colors.indigo[100],
           actions: [
-            Padding(
-              padding: EdgeInsets.all(10),
-              child: Icon(Icons.account_circle_outlined, color: Colors.white),
-            ),
+            IconButton(
+              icon: const Icon(Icons.account_circle_outlined),
+              tooltip: 'Inc',
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ProfileScreen()),
+                );
+              },
+            )
           ],
         ),
 // The body contains the search bar, defined in the class at the end of the page.
@@ -52,7 +60,7 @@ class Education extends StatelessWidget {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => HomePage()));
+                                  builder: (context) => OrganisationHomePage()));
                         },
                       ),
                       //FOOD BANK SERVICES BUTTON
@@ -87,17 +95,7 @@ class Education extends StatelessWidget {
                                   builder: (context) => AnimalServices()));
                         },
                       ),
-                      //EDUCATIONAL SERVICES BUTTON
-                      ListTile(
-                        leading: Icon(Icons.school_outlined),
-                        title: Text("Education"),
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => Education()));
-                        },
-                      ),
+
                       // ENVIRONMENTAL SERVICES BUTTON
                       ListTile(
                         leading: Icon(Icons.landscape_rounded),

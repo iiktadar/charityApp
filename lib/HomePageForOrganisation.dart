@@ -1,7 +1,8 @@
 // THIS IS THE HOME PAGE WITH ALERTS FROM CHARITIES. THE ALERT BOARD WITH POST BUTTON IS FOR ORGANISATIONS ONLY!!
 
+import 'package:first_app/WelcomePage.dart';
 import 'package:flutter/material.dart';
-
+import './Service/auth.dart';
 import './Education.dart';
 import './Food.dart';
 import './Community.dart';
@@ -9,8 +10,70 @@ import './Environment.dart';
 import './AnimalServices.dart';
 import './ProfilePage.dart';
 import './PostPage.dart';
+import 'AlertBoard.dart';
+import './Service/post.dart';
 
-class OrganisationHomePage extends StatelessWidget {
+
+class OrganisationHomePage extends StatefulWidget {
+   @override
+  _MyHomePageState1 createState() => new _MyHomePageState1();
+}
+
+class _MyHomePageState1 extends State<OrganisationHomePage> {
+
+  final AuthService auth = AuthService();
+  List<Post> posts = [
+    Post(
+        date: "27/03/2021",
+        description: "Looking for volunteers to help with sport events",
+        location: "London",
+        name: "British Heart Foundation",
+        number: "0201234567",
+        time: "12:00",
+        logo: "bhf.png",
+        address: "High Street, London, NW1"),
+    Post(
+        date: "27/03/2021",
+        description: "Help people with disabilites",
+        location: "Manchester",
+        name: "Special Olympics",
+        number: "0724251525",
+        time: "14:00",
+        logo: "specialolympics.png",
+        address: "145 City Road, Hoxton, London, EC1V 1AZ"),
+    Post(
+        date: "28/03/2021",
+        description:
+            "Join us in our march to ask for better conditions for refugees",
+        location: "Leeds",
+        name: "UNICEF UK",
+        number: "0205225113",
+        time: "18:00",
+        logo: "unicef.png",
+        address: "1 Westfield Ave, Leeds, LU2 1HZ"),
+    Post(
+        date: "29/03/2021",
+        description:
+            "Help us spread awareness about Mental Health issues millions of people face every day!",
+        location: "London",
+        name: "Mind",
+        number: "0724251525",
+        time: "09:00",
+        logo: "mind.png",
+        address: "15-19 Broadway, Stratford, London E15 4BQ"),
+    Post(
+        date: "01/04/2021",
+        description: "I want to help beat Cancer!",
+        location: "London",
+        name: "Cancer Research UK",
+        number: "0201235666",
+        time: "11:00",
+        logo: "cruk.png",
+        address: "2 Redman Place, London, E20 1JQ")
+  ];
+
+
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -18,7 +81,7 @@ class OrganisationHomePage extends StatelessWidget {
         //Styling the top app bar with added icons
         appBar: AppBar(
           title: Text(
-            'Alert Board',
+            'Home Page Organisation',
             style: TextStyle(fontSize: 20, color: Colors.white),
           ),
           shape: RoundedRectangleBorder(
@@ -27,14 +90,61 @@ class OrganisationHomePage extends StatelessWidget {
           toolbarHeight: 70,
           backgroundColor: Colors.indigo[100],
           actions: [
-            Padding(
-              padding: EdgeInsets.all(10),
-              child: Icon(Icons.account_circle_outlined, color: Colors.white),
-            ),
+            IconButton(
+              icon: const Icon(Icons.account_circle_outlined),
+              tooltip: 'Inc',
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ProfileScreen()),
+                );
+              },
+            )
           ],
         ),
 // ADDING POST BUTTON, CHANGE THE COLOUR!!!
-        body: Container(),
+body: ListView.builder(
+            itemCount: posts.length,
+            itemBuilder: (context, index) {
+              return Card(
+                child: ExpansionTile(
+                  //leading: FlutterLogo(size: 72.0),
+                  leading: CircleAvatar(
+                      backgroundImage: AssetImage('lib/Assets/${posts[index].logo}')),
+                  title: Text(posts[index].name),
+                  subtitle: Text(posts[index].date +
+                      ", " +
+                      posts[index].time +
+                      "  ---  " +
+                      posts[index].location),
+                  trailing: Icon(Icons.expand_more),
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 16.0, top: 6.5),
+                      child: Text(
+                        posts[index].description,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(color: Colors.black.withOpacity(0.6)),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(bottom: 13.0),
+                      child: Text(
+                        ' \u27B4:  ${posts[index].address}',
+                        style: TextStyle(color: Colors.black.withOpacity(0.6)),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(bottom: 13.0),
+                      child: Text(
+                        ' \u9743:  ${posts[index].number}',
+                        style: TextStyle(color: Colors.black.withOpacity(0.6)),
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            }),
         floatingActionButton: Container(
             padding: EdgeInsets.symmetric(vertical: 10),
             child: Row(
@@ -75,6 +185,18 @@ class OrganisationHomePage extends StatelessWidget {
                         },
                       ),
 
+                      // ALERT BOARD
+                      ListTile(
+                        leading: Icon(Icons.star),
+                        title: Text("Alert Board"),
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => AlertBoard()));
+                        },
+                      ),
+
                       //FOOD BANK SERVICES BUTTON
                       ListTile(
                         leading: Icon(Icons.food_bank_rounded),
@@ -98,8 +220,8 @@ class OrganisationHomePage extends StatelessWidget {
 
                       // ANIMAL SERVICES BUTTON
                       ListTile(
-                        leading: Icon(Icons.pets),
-                        title: Text("Animal Services"),
+                        leading: Icon(Icons.healing),
+                        title: Text("Public Health"),
                         onTap: () {
                           Navigator.push(
                               context,
@@ -147,7 +269,16 @@ class OrganisationHomePage extends StatelessWidget {
                                 leading: Icon(Icons.help), title: Text('Help')),
                             ListTile(
                                 leading: Icon(Icons.logout),
-                                title: Text('Logout')),
+                                title: Text('Logout'),
+                                onTap: () async{
+                                  dynamic result = await auth.signOut();
+                                if (result!=null){
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => WelcomePage()));
+                                }
+                                }),
                           ]),
                         )))
               ],

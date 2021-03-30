@@ -1,13 +1,18 @@
 // THIS IS THE HOME PAGE WITH ALERTS FROM CHARITIES
 
+import 'package:first_app/WelcomePage.dart';
+import './Service/auth.dart';
 import './Education.dart';
 import 'package:flutter/material.dart';
 import './Food.dart';
 import './Community.dart';
 import './Environment.dart';
 import './AnimalServices.dart';
+import './HomePage.dart';
+import './ProfilePage.dart';
 
-class HomePage extends StatelessWidget {
+class AlertBoard extends StatelessWidget {
+  final AuthService auth = AuthService();
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -24,10 +29,16 @@ class HomePage extends StatelessWidget {
           toolbarHeight: 70,
           backgroundColor: Colors.indigo[100],
           actions: [
-            Padding(
-              padding: EdgeInsets.all(10),
-              child: Icon(Icons.account_circle_outlined, color: Colors.white),
-            ),
+            IconButton(
+              icon: const Icon(Icons.account_circle_outlined),
+              tooltip: 'Inc',
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ProfileScreen()),
+                );
+              },
+            )
           ],
         ),
         // this is the code for the side navigation bar, with list of options. Navigator connects all pages
@@ -126,8 +137,19 @@ class HomePage extends StatelessWidget {
                             ListTile(
                                 leading: Icon(Icons.help), title: Text('Help')),
                             ListTile(
-                                leading: Icon(Icons.logout),
-                                title: Text('Logout')),
+                              leading: Icon(Icons.logout),
+                              title: Text('Logout'),
+                              onTap: () async{
+                                dynamic result = await auth.signOut();
+                                if (result!=null){
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => WelcomePage()));
+                                }
+
+                              },
+                            ),
                           ]),
                         )))
               ],

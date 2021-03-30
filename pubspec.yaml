@@ -50,6 +50,12 @@ flutter:
   # assets:
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
+  assets:
+     - lib/Assets/unicef.png
+     - lib/Assets/cruk.png
+     - lib/Assets/mind.png
+     - lib/Assets/specialolympics.png
+     - lib/Assets/bhf.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

@@ -10,7 +10,7 @@ class WelcomePage extends StatelessWidget {
     var gradients;
     return Scaffold(
       appBar: AppBar(
-        title: Text('Welcome to Your Charity App'),
+        title: Text('Chare'),
       ),
       body: Center(
         child: Column(

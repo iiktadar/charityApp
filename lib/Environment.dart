@@ -1,10 +1,13 @@
-import './Community.dart';
 import 'package:flutter/material.dart';
-import './Food.dart';
-import './AnimalServices.dart';
 import './Education.dart';
-import './AlertBoard.dart';
 import './ProfilePage.dart';
+import './Food.dart';
+import './Community.dart';
+import './Environment.dart';
+import './AnimalServices.dart';
+import './HomePage.dart';
+import 'AlertBoard.dart';
+import 'HomePageForOrganisation.dart';
 
 class Environment extends StatelessWidget {
   @override
@@ -56,7 +59,18 @@ class Environment extends StatelessWidget {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => HomePage()));
+                                  builder: (context) =>
+                                      OrganisationHomePage()));
+                        },
+                      ),
+                      ListTile(
+                        leading: Icon(Icons.star),
+                        title: Text("Alert Board"),
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => AlertBoard()));
                         },
                       ),
                       //FOOD BANK SERVICES BUTTON
@@ -100,17 +114,6 @@ class Environment extends StatelessWidget {
                               context,
                               MaterialPageRoute(
                                   builder: (context) => Education()));
-                        },
-                      ),
-                      // ENVIRONMENTAL SERVICES BUTTON
-                      ListTile(
-                        leading: Icon(Icons.landscape_rounded),
-                        title: Text("Environmental Services"),
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => Environment()));
                         },
                       ),
                     ],

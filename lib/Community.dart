@@ -5,8 +5,24 @@ import './Community.dart';
 import './Environment.dart';
 import './AnimalServices.dart';
 import './HomePage.dart';
+import 'AlertBoard.dart';
+import 'HomePageForOrganisation.dart';
+import 'ProfilePage.dart';
+import './Service/post.dart';
 
 class Community extends StatelessWidget {
+
+    List<Post> posts = [
+    Post(
+        date: "28/03/2021",
+        description:
+            "Join us in our march to ask for better conditions for refugees",
+        location: "Leeds",
+        name: "UNICEF UK",
+        number: "0205225113",
+        time: "18:00",
+        logo: "unicef.png",
+        address: "1 Westfield Ave, Leeds, LU2 1HZ")];
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -23,14 +39,62 @@ class Community extends StatelessWidget {
           toolbarHeight: 70,
           backgroundColor: Colors.indigo[100],
           actions: [
-            Padding(
-              padding: EdgeInsets.all(10),
-              child: Icon(Icons.account_circle_outlined, color: Colors.white),
-            ),
+            IconButton(
+              icon: const Icon(Icons.account_circle_outlined),
+              tooltip: 'Inc',
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ProfileScreen()),
+                );
+              },
+            )
           ],
         ),
 // The body contains the search bar, defined in the class at the end of the page.
-        body: searchBar(),
+        //body: searchBar(),
+        body: ListView.builder(
+            itemCount: posts.length,
+            itemBuilder: (context, index) {
+              return Card(
+                child: ExpansionTile(
+                  //leading: FlutterLogo(size: 72.0),
+                  leading: CircleAvatar(
+                      backgroundImage: AssetImage('lib/Assets/${posts[index].logo}')),
+                  title: Text(posts[index].name),
+                  subtitle: Text(posts[index].date +
+                      ", " +
+                      posts[index].time +
+                      "  ---  " +
+                      posts[index].location),
+                  trailing: Icon(Icons.expand_more),
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 16.0, top: 6.5),
+                      child: Text(
+                        posts[index].description,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(color: Colors.black.withOpacity(0.6)),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(bottom: 13.0),
+                      child: Text(
+                        ' \u27B4:  ${posts[index].address}',
+                        style: TextStyle(color: Colors.black.withOpacity(0.6)),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(bottom: 13.0),
+                      child: Text(
+                        ' \u9743:  ${posts[index].number}',
+                        style: TextStyle(color: Colors.black.withOpacity(0.6)),
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            }),
         // this is the code for the side navigation bar, with list of options
         drawer: Drawer(
             elevation: 1.5,
@@ -52,7 +116,18 @@ class Community extends StatelessWidget {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => HomePage()));
+                                  builder: (context) =>
+                                      OrganisationHomePage()));
+                        },
+                      ),
+                      ListTile(
+                        leading: Icon(Icons.star),
+                        title: Text("Alert Board"),
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => AlertBoard()));
                         },
                       ),
                       //FOOD BANK SERVICES BUTTON
@@ -65,16 +140,6 @@ class Community extends StatelessWidget {
                         },
                       ),
                       //COMMUNITY SERVICE BUTTON
-                      ListTile(
-                        leading: Icon(Icons.apartment_rounded),
-                        title: Text("Community"),
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => Community()));
-                        },
-                      ),
 
                       // ANIMAL SERVICES BUTTON
                       ListTile(

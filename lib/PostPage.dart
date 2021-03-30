@@ -1,8 +1,7 @@
-import 'package:first_app/Service/database.dart';
 import 'package:first_app/WelcomePage.dart';
 import 'package:flutter/material.dart';
 import './HomePageForOrganisation.dart';
-
+import 'package:first_app/Service/database.dart';
 import 'package:first_app/WelcomePage.dart';
 import 'package:flutter/material.dart';
 import './HomePageForOrganisation.dart';
@@ -25,6 +24,7 @@ class _MyAppState extends State<CreatePost> {
   String _contact;
   String _location = '';
   String _commitment = '';
+  String _address = '';
 
   //dropdown menu values and variables
   String category1 = 'Food Banks';
@@ -190,16 +190,36 @@ class _MyAppState extends State<CreatePost> {
             keyboardType: TextInputType.multiline,
             maxLines: null,
             decoration: buildInputDecoration(
-                Icons.star, "What is the required commitment time?"),
+                Icons.star, "Time"),
             validator: (String value) {
               if (value.isEmpty) {
-                return 'Please add commitment time';
+                return 'Please specify the time';
               }
 
               return null;
             },
             onSaved: (String value) {
               _commitment = value;
+            },
+          ),
+        ),
+
+        Padding(
+          padding: const EdgeInsets.only(bottom: 15, left: 10, right: 10),
+          child: TextFormField(
+            keyboardType: TextInputType.multiline,
+            maxLines: null,
+            decoration: buildInputDecoration(
+                Icons.star, "Address"),
+            validator: (String value) {
+              if (value.isEmpty) {
+                return 'Please add your address';
+              }
+
+              return null;
+            },
+            onSaved: (String value) {
+              _address = value;
             },
           ),
         ),
@@ -305,7 +325,7 @@ class _MyAppState extends State<CreatePost> {
       print("Location $_location");
       print("Commitment $_commitment");
       print("Category $category1");
-      await DatabaseService().updatePost(_namee, _description, _location, _contact, _date, _commitment);
+      await DatabaseService().updatePost(_namee, _description, _location, _contact, _date, _commitment,_address);
       Navigator.push(
         context,
         MaterialPageRoute(
