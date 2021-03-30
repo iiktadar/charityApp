@@ -2,11 +2,11 @@
 # Google Developer Student Club - Queen Mary University of London 2021 Entry
 
 
-# Developed by: 
-# Melisa-Andreea Bogdan
-# Ibtasum Iktadar
-# Jada-Tiana Carnie
-# Hasibulshamim Anik
+Developed by: 
+ - Melisa-Andreea Bogdan
+ - Ibtasum Iktadar
+ - Jada-Tiana Carnie
+ - Hasibulshamim Anik
 
 
 
